@@ -21,7 +21,7 @@ jobs:
           apt-get update
           apt-get install -y libnss3-dev libatk-bridge2.0-0 libgconf-2-4 libatk1.0-0 libatspi2.0-0 \
             libgbm-dev libpango-1.0-0 libx11-xcb1 libxcb-dri3-0 libxshmfence-dev libegl1-mesa-dev \
-            xauth xvfb
+            libasound2 xauth xvfb libcups2-dev libxcomposite-dev libxrandr-dev libxkbcommon-dev
           npm install
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
