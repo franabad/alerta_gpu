@@ -38,7 +38,8 @@ async function readData (lowestPrice) {
     waitUntil: 'load'
   })
 
-  const apiContent = JSON.parse(await page.$eval('*', (el) => el.innerText))
+  const response = await page.waitForResponse((response) => response.url().includes('api-v1/products/search') && response.status() === 200)
+  const apiContent = await response.json()
   const articles = apiContent.articles
   const outputList = []
 
