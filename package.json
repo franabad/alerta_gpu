@@ -1,0 +1,25 @@
+{
+  "name": "alerta_gpu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "func start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.0.3",
+    "nodemailer": "6.9.1",
+    "playwright": "1.32.1",
+    "playwright-chromium": "1.32.1",
+    "playwright-core": "1.32.1"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "devDependencies": {
+    "standard": "17.0.0"
+  }
+}
