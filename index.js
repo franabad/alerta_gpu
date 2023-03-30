@@ -85,7 +85,7 @@ try {
   const jsonOutput = JSON.parse(fs.readFileSync('output.json'))
   const lowestPrice = +jsonOutput[0].split(' -> ')[1]
 
-  readData(lowestPrice, jsonOutput)
+  readData(lowestPrice)
 } catch (err) {
   readData()
 }
