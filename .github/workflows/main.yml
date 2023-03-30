@@ -1,0 +1,17 @@
+name: Scrape GPU
+on:
+  schedule:
+    - cron: '0 9 * * *' # Ejecutar todos los días a las 9:00 AM
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    container:
+      image: 'node:18-buster'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Script
+        run: node index.js
