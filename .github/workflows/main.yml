@@ -17,8 +17,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Install Dependencies
-        run:  apt-get update
-              apt-get install -y libnss3-dev libatk-bridge2.0-0 libgconf-2-4 libatk1.0-0 libatspi2.0-0 \
+        run:  apt-get update apt-get install -y libnss3-dev libatk-bridge2.0-0 libgconf-2-4 libatk1.0-0 libatspi2.0-0 \
               libgbm-dev libpango-1.0-0 libx11-xcb1 libxcb-dri3-0 libxshmfence-dev libegl1-mesa-dev \
               libasound2 xauth xvfb
               npm install
