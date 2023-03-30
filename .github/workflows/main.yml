@@ -2,6 +2,11 @@ name: Scrape GPU
 on:
   schedule:
     - cron: '0 9 * * *' # Ejecutar todos los días a las 9:00 AM
+  workflow_dispatch:
+    inputs:
+      param:
+        description: 'Prueba'
+        required: true
 
 jobs:
   scrape:
@@ -12,6 +17,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Install Dependencies
-        run: npm install
+        run: |
+          apt-get update
+          apt-get install -y libnss3-dev libatk-bridge2.0-0 libgconf-2-4 libatk1.0-0 libatspi2.0-0 \
+            libgbm-dev libpango-1.0-0 libx11-xcb1 libxcb-dri3-0 libxshmfence-dev libegl1-mesa-dev \
+            libasound2 xauth xvfb libcups2-dev libxcomposite-dev libxrandr-dev libxkbcommon-dev
+          npm install
       - name: Run Script
-        run: node index.js
+        run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
