@@ -77,6 +77,7 @@ async function readData (lowestPrice) {
   await browser.close()
 
   if (!newPriceFound) {
+    sendEmail(firstArticleLink, readData.article.promotionalPrice)
     console.log('No se ha encontrado ningún precio más bajo\n')
   }
 }
