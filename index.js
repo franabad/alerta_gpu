@@ -38,7 +38,7 @@ async function readData (lowestPrice) {
     waitUntil: 'load'
   })
 
-  page.screenshot({ path: 'screenshot.png' })
+  await page.screenshot({ path: 'screenshot.png' })
 
   const apiContent = JSON.parse(await page.$eval('*', (el) => el.innerText))
   const articles = apiContent.articles
@@ -79,7 +79,7 @@ async function readData (lowestPrice) {
   await browser.close()
 
   if (!newPriceFound) {
-    sendEmail(firstArticleLink, readData.article.promotionalPrice)
+    // sendEmail(firstArticleLink, readData.article.promotionalPrice)
     console.log('No se ha encontrado ningún precio más bajo\n')
   }
 }
