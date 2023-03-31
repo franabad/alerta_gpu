@@ -3,10 +3,6 @@ on:
   schedule:
     - cron: '0 9 * * *' # Ejecutar todos los días a las 9:00 AM
   workflow_dispatch:
-    inputs:
-      param:
-        description: 'Prueba'
-        required: true
 
 jobs:
   scrape:
@@ -25,3 +21,12 @@ jobs:
           npm install
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "fam1096@hotmail.com"
+          git config --global user.name "Fran Abad"
+          git add output.json
+          git commit -m "Add output.json via GitHub Action"
+          git push origin HEAD:main
