@@ -24,12 +24,12 @@ jobs:
       - name: Push changes
         if: always()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.email "fam1096@hotmail.com"
           git config --global user.name "franabad"
           git config --global --add safe.directory "/__w/alerta_gpu/alerta_gpu"
           git add screenshot.png output.json
           git commit -m "Add screenshot.png via GitHub Action"
-          git push https://$GITHUB_TOKEN@github.com/franabad/alerta_gpu.git
+          git push https://$GH_TOKEN@github.com/franabad/alerta_gpu.git
 
