@@ -33,12 +33,13 @@ async function sendEmail (firstArticleLink, price) {
 }
 
 async function readData (lowestPrice) {
-  const browser = await chromium.launch({ headless: false })
-  const page = await browser.newPage()
+  const browser = await chromium.launch({ headless: true })
+  const setAgent = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36'
+  })
+  const page = await setAgent.newPage()
 
   await page.goto(url)
-  await page.screenshot({ path: 'screenshot.png' })
-  await page.getByText('Todas las categorías').waitFor()
 
   await page.screenshot({ path: 'screenshot.png' })
 
