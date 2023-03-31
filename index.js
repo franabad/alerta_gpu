@@ -33,7 +33,7 @@ async function sendEmail (firstArticleLink, price) {
 }
 
 async function readData (lowestPrice) {
-  const browser = await chromium.launch({ headless: true })
+  const browser = await chromium.launch({ headless: false })
   const setAgent = await browser.newContext({
     userAgent: 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0'
   })
