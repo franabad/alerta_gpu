@@ -38,8 +38,7 @@ async function readData (lowestPrice) {
     waitUntil: 'load'
   })
 
-  const response = await page.waitForResponse((response) => response.url())
-  const apiContent = await response.json()
+  const apiContent = JSON.parse(await page.$eval('*', (el) => el.innerText))
   const articles = apiContent.articles
   const outputList = []
 
