@@ -22,6 +22,7 @@ jobs:
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
       - name: Commit and push files
+        if: always()
         run: |
           git config user.name [bot] scrapper-gpu
           git add -A
