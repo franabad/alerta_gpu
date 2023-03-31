@@ -6,6 +6,8 @@ require('dotenv').config()
 const url =
   'https://www.pccomponentes.com/api-v1/products/search?categoryId=2194165b-70a8-4e4e-ab74-0007a55b73ab&sort=price_asc&channel=es&page=1&pageSize=40&enum_attribute_c89fa5c4-274e-4d00-b88e-1efb0c13ded0[]=dfb932c3-3f08-4d5d-b914-5f8fe4cf4988&buy_box_results[]=WINS_NEW'
 
+// const url2 = 'https://www.pccomponentes.com/'
+
 async function sendEmail (firstArticleLink, price) {
   const config = {
     host: 'smtp.gmail.com',
@@ -34,9 +36,9 @@ async function readData (lowestPrice) {
   const browser = await chromium.launch({ headless: false })
   const page = await browser.newPage()
 
-  await page.goto(url, {
-    waitUntil: 'load'
-  })
+  await page.goto(url)
+  await page.screenshot({ path: 'screenshot.png' })
+  await page.getByText('Todas las categorías').waitFor()
 
   await page.screenshot({ path: 'screenshot.png' })
 
