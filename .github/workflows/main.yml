@@ -31,6 +31,7 @@ jobs:
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
         
       - name: Change config directory
+        if: always()
         run:  git config --global --add safe.directory /__w/alerta_gpu/alerta_gpu  
         
       - name: Commit and push files
