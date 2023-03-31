@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  scrape:
+  Scrape:
     runs-on: ubuntu-latest
     
     container:
