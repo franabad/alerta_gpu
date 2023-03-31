@@ -6,15 +6,12 @@ on:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: 'node:18-buster'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
       - name: Install Dependencies
         run: |
           apt-get update
@@ -24,18 +21,11 @@ jobs:
           npm install
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
-      - name: Commit files
-        if: always()
+      - name: Commit and push files
         run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git config --global --add safe.directory /__w/alerta_gpu/alerta_gpu
-          git add screenshot.png output.json
-          git commit -a -m "Update screenshot.png and output.json"
-      - name: Push changes
-        if: always()
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          git config user.name [bot] scrapper-gpu
+          git add -A
+          git commit -m "[bot] Update screenshot.png and output.json"
+          git push origin main
+
 
