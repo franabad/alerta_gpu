@@ -38,6 +38,8 @@ async function readData (lowestPrice) {
     waitUntil: 'load'
   })
 
+  page.screenshot({ path: 'screenshot.png' })
+
   const apiContent = JSON.parse(await page.$eval('*', (el) => el.innerText))
   const articles = apiContent.articles
   const outputList = []
