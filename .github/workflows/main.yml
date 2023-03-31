@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Install Dependencies
         run: |
           apt-get update
@@ -21,15 +24,15 @@ jobs:
           npm install
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
-      - name: Push changes
+      - name: Commit files
         if: always()
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git config --global user.email "fam1096@hotmail.com"
-          git config --global user.name "franabad"
-          git config --global --add safe.directory "/__w/alerta_gpu/alerta_gpu"
-          git add screenshot.png output.json
-          git commit -m "Add screenshot.png via GitHub Action"
-          git push https://$GH_TOKEN@github.com/franabad/alerta_gpu.git
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Update screenshot.png and output.json"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
