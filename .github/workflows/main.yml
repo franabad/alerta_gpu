@@ -30,9 +30,11 @@ jobs:
       - name: Run Script
         run: xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' node index.js
         
+      - name: Change config directory
+        run: git config --global --add safe.directory /__w/alerta_gpu/alerta_gpu  
+        
       - name: Commit and push files
         if: always()
-        run: git config --global --add safe.directory /__w/alerta_gpu/alerta_gpu
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update screenshot.png and output.json  
