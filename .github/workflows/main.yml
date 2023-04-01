@@ -26,12 +26,14 @@ jobs:
           SCRAPER_API: ${{ secrets.SCRAPER_API }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: node index.js
+        
+      - name: Commit and push to repo
         run: |
-          node index.js
           git config user.name scraper-gpu-bot
           git add -A
           git commit -m "[bot] Update GPU Database"
-          git push origin main
+          git push origin master
         
       # - name: Commit and push files
       #   if: always()
