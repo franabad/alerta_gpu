@@ -41,7 +41,7 @@ async function readData (lowestPrice) {
 
   await page.goto(url)
 
-  await page.screenshot({ path: 'screenshot.png' })
+  setTimeout(async () => { await page.screenshot({ path: 'screenshot.png' }) }, 5000)
 
   const apiContent = JSON.parse(await page.$eval('*', (el) => el.innerText))
   const articles = apiContent.articles
