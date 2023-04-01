@@ -29,10 +29,12 @@ jobs:
         run: node index.js
         
       - name: Commit and push to repo
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name scraper-gpu-bot
           git add -A
-          git commit -m "[bot] Update GPU Database"
+          git commit -m "[bot] Update GPUs Database"
           git push origin master
         
       # - name: Commit and push files
