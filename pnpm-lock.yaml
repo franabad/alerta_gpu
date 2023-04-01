@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   dotenv: 16.0.3
+  node-fetch: ^2.6.1
   nodemailer: 6.9.1
   playwright: 1.32.1
   playwright-chromium: 1.32.1
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   dotenv: 16.0.3
+  node-fetch: 2.6.1
   nodemailer: 6.9.1
   playwright: 1.32.1
   playwright-chromium: 1.32.1
@@ -1122,6 +1124,11 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /node-fetch/2.6.1:
+    resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
+    engines: {node: 4.x || >=6.0.0}
+    dev: false
 
   /nodemailer/6.9.1:
     resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
