@@ -8,9 +8,12 @@ on:
 jobs:
   Scrape:
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      contents: write
+    
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
         
       - name: Set up Node.js
@@ -18,20 +21,22 @@ jobs:
         with:
           node-version: '18'
         
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
           
-      - name: Run Script
+      - name: Run script
         env:
           SCRAPER_API: ${{ secrets.SCRAPER_API }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
         run: node index.js
         
-      - name: Commit and push to repo
+      - name: Commit and push files
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update GPUs Daatabase 
-      
+          commit_message: Update GPU Database
+          
+          
+
 
 
