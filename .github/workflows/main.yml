@@ -8,36 +8,33 @@ on:
 jobs:
   Scrape:
     runs-on: ubuntu-latest
-    
-    container:
-      image: 'node:18-buster'
-      
-    permissions:
-      contents: write
-      
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+        
       - name: Install Dependencies
-        run: |
-          apt-get update
-          apt-get install -y libnss3-dev libatk-bridge2.0-0 libgconf-2-4 libatk1.0-0 libatspi2.0-0 \
-            libgbm-dev libpango-1.0-0 libx11-xcb1 libxcb-dri3-0 libxshmfence-dev libegl1-mesa-dev \
-            libasound2 xauth xvfb libcups2-dev libxcomposite-dev libxrandr-dev libxkbcommon-dev
-          npm install
+        run: npm install
           
       - name: Run Script
-        run: node index.js
+        env:
+          SCRAPER_API: ${{ secrets.SCRAPER_API }}
+        run: |
+          node index.js
+          git config user.name scraper-gpu-bot
+          git add -A
+          git commit -m "[bot] Update GPU Database"
+          git push origin main
         
-      - name: Change config directory
-        if: always()
-        run:  git config --global --add safe.directory /__w/alerta_gpu/alerta_gpu  
-        
-      - name: Commit and push files
-        if: always()
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update screenshot.png and output.json  
+      # - name: Commit and push files
+      #   if: always()
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: Update output.json  
 
 
