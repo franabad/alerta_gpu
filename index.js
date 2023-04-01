@@ -40,6 +40,7 @@ async function readData (lowestPrice) {
   const page = await setAgent.newPage()
 
   await page.goto(url)
+  await page.waitForTimeout(5000)
 
   await page.screenshot({ path: 'screenshot.png' })
 
