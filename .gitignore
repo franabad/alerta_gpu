@@ -1,5 +1,10 @@
 index_bueno.js
 package-lock.json
+.funcignore
+host.json
+gpu-scrapper
+.vscode
+
 
 # Logs
 logs
