@@ -30,7 +30,7 @@ jobs:
         
       - name: Commit and push to repo
         run: |
-          git config user.name scraper-gpu-bot
+          git config --global user.name scraper-gpu-bot
           git add -A
           git commit -m "[bot] Update GPU Database"
           git push origin master
